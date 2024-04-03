@@ -12,3 +12,8 @@ export interface SearchDataProp{
 export interface FoodDataProp{
   data: CardDatatype[]
 }
+
+export interface ToggleProps {
+  handleDarkMode: () => void; 
+  isDarkMode: boolean; 
+}

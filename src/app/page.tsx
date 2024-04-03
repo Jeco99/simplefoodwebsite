@@ -4,10 +4,11 @@ import React, { useState } from "react";
 import { foodData } from "./foodData";
 import { Card } from "../../component/card/card";
 import SearchBar from "../../component/searchBar/searchBar";
-import { CardDatatype, FoodDataProp } from "../../component/dataInterface";
+import { CardDatatype } from "../../component/dataInterface";
 import styles from "./food.module.css";
+import Toggle from "../../component/toggle/toggle";
 
-const Home: React.FC<FoodDataProp> = () => {
+const Home = () => {
   const [filteredData, setFilteredData] = useState<CardDatatype[]>(foodData);
   const [sortList, setSortList] = useState("ascending");
   const [isDarkMode, setDarkMode] = useState(false);
@@ -29,13 +30,22 @@ const Home: React.FC<FoodDataProp> = () => {
     setSortList(sortList === "ascending" ? "descending" : "ascending");
   };
 
+  const handleDarkMode = () => {
+    setDarkMode(!isDarkMode);
+  };
+
   return (
+
     <div className={isDarkMode ? styles.darkMode : styles.lightMode}>
       <div className={styles.buttonContainer}>
       <SearchBar onSearch={handleSearch}/>
       <button onClick={handleSort} className={styles.sortButton}>
         {sortList === "ascending" ? "Descending" : "Ascending"}
       </button>
+      <Toggle        
+        isDarkMode={isDarkMode}
+        handleDarkMode={handleDarkMode}
+      />
       </div>
       <div className={styles.cardContainer}>
       {filteredData.map((data, index) => (
