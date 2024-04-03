@@ -1,0 +1,26 @@
+.card{
+    display: flex-column;
+    border: solid 2px black;
+    border-radius:5px;
+    padding: 24px;
+}
+
+.cardImage{
+    height: 25vh;
+    width: 25vh;
+}
+
+.cardContent {
+    padding: 20px;
+  }
+  
+  .cardTitle {
+    font-size: 20px;
+    color: #333333;
+    margin-bottom: 10px;
+  }
+  
+  .cardDescription {
+    font-size: 16px;
+    color: #666666;
+  }
