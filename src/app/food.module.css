@@ -9,10 +9,14 @@
     color: black;
     border: white;
 }
+.buttonContainer,
+.cardContainer{
+    padding: 24px;
+    gap: 16px;
+}
 
 .buttonContainer{
     display: flex;
-    gap: 16px;
     justify-content: center;
     align-items: center;
 }
@@ -26,6 +30,4 @@
 .cardContainer{
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Adjust column count as needed */
-    gap: 20px;
-    margin-top: 12px;
 }
