@@ -17,9 +17,3 @@ export interface ToggleProps {
   handleDarkMode: () => void; 
   isDarkMode: boolean; 
 }
-
-export interface AddFormProps {
-  filteredData: CardDatatype[];
-  setFilteredData: React.Dispatch<React.SetStateAction<CardDatatype[]>>;
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
