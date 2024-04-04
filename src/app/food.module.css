@@ -22,7 +22,8 @@
     align-items: center;
 }
 
-.sortButton{
+.sortButton,
+.add_DataBtn{
     border: solid 2px black;
     border-radius: 5px;
     padding: 10px 15px;
