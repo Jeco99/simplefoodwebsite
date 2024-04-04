@@ -67,7 +67,7 @@ const Home = () => {
         isDarkMode={isDarkMode}
         handleDarkMode={handleDarkMode}
       />
-      <button onClick={handleModal}><Link href="/addData">Add Data</Link></button>
+      <button className={styles.add_DataBtn}><Link href="/addData">Add Data</Link></button>
   
       </div>
       {/* {isModal && <AddForm />} */}

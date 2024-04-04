@@ -1,22 +1,25 @@
-"use client"
+"use client";
 
-import { useForm } from "react-hook-form"
-import { yupResolver } from "@hookform/resolvers/yup"
-import * as yup from "yup"
-import style from './addForm.module.css';
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import style from "./addForm.module.css";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { onShowError, onShowSuccess } from "../../../utils/toastHelper";
 
 const schema = yup.object().shape({
-    name: yup.string().required("Name is required"),
-    description: yup.string().required("Description is required"),
-    image_url: yup.string().url("Invalid URL").required("URL is required"),
-    rating: yup
-      .number()
-      .min(1, "Rating must be at least 1")
-      .max(5, "Rating must be at most 5")
-      .required("Rating is required")
-  });
-
+  name: yup.string().required("Name is required"),
+  description: yup.string().required("Description is required"),
+  image_url: yup.string().url("Invalid URL").required("URL is required"),
+  rating: yup
+    .number()
+    .min(1, "Rating must be at least 1")
+    .max(5, "Rating must be at most 5")
+    .typeError("Rating must be a number"),
+});
 
 export default function AddForm() {
   const {
@@ -25,42 +28,68 @@ export default function AddForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-  })
+  });
 
-
+  useEffect(() => {
+    if (errors.name) { onShowError(errors.name.message)
+    }
+    if (errors.description) {
+      onShowError(errors.description.message)
+    }
+    if (errors.image_url) {
+      onShowError(errors.image_url.message)
+    }
+    if (errors.rating) {
+      onShowError(errors.rating.message)
+    }
+  }, [errors.name, errors.description, errors.image_url, errors.rating]);
 
   const onSubmit = (data: any) => {
-    console.log(data);
     try {
       localStorage.setItem("newData", JSON.stringify(data));
-      console.log("Data stored successfully");
+      onShowSuccess("Data stored successfully")
     } catch (error) {
-      console.error("Error storing data:", error);
+      onShowError("Failed to store data. Please try again.")
     }
   };
-  
-
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={style.formContainer}>
-    <label htmlFor="name">Name</label>
-    <input className={style.formInput} type="text" {...register("name")} />
-    {errors.name && <span>{errors.name.message}</span>}
+    <>
+      <ToastContainer />
+      <form onSubmit={handleSubmit(onSubmit)} className={style.formContainer}>
+       <h1 className="text-center">Add New Food Data</h1>
+       
+        <label htmlFor="name">Name</label>
+        <input className={style.formInput} type="text" {...register("name")} />
 
-    <label htmlFor="description">Description</label>
-    <input className={style.formInput} type="text" {...register("description")} />
-    {errors.description && <span>{errors.description.message}</span>}
+        <label htmlFor="description">Description</label>
+        <textarea
+          className={style.formInput}
+          {...register("description")}
+        />
 
-    <label htmlFor="url">URL</label>
-    <input className={style.formInput} type="text" {...register("image_url")} />
-    {errors.image_url && <span>{errors.image_url.message}</span>}
+        <label htmlFor="url">URL</label>
+        <input
+          className={style.formInput}
+          type="text"
+          {...register("image_url")}
+        />
 
-    <label htmlFor="rating">Rating</label>
-    <input className={style.formInput} type="number" {...register("rating")} />
-    {errors.rating && <span>{errors.rating.message}</span>}
+        <label htmlFor="rating">Rating</label>
+        <input
+          className={style.formInput}
+          type="number"
+          {...register("rating")}
+        />
 
-    <button type="submit">Submit</button>
-    <button><Link href="/">Bo Back</Link></button>
-  </form>
-  )
+    <div className={style.btnContainer}>
+    <button className={style.formButton}>
+          <Link href="/">Go Back</Link>
+        </button>
+        <button  className={style.formButton}type="submit">Submit</button>
+    </div>
+        
+      </form>
+    </>
+  );
 }
