@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { foodData } from "./foodData";
 import { Card } from "../../component/card/card";
 import SearchBar from "../../component/searchBar/searchBar";
@@ -8,10 +8,16 @@ import { CardDatatype } from "../../component/dataInterface";
 import styles from "./food.module.css";
 import Toggle from "../../component/toggle/toggle";
 
+
 const Home = () => {
   const [filteredData, setFilteredData] = useState<CardDatatype[]>(foodData);
   const [sortList, setSortList] = useState("ascending");
   const [isDarkMode, setDarkMode] = useState(false);
+  const [isFirstLoad, setIsFirstLoad] = useState(true);
+
+  useEffect(() => {
+    setIsFirstLoad(false);
+  }, []);
 
   const handleSearch = (query: string) => {
     const filtered = foodData.filter((item) =>
@@ -49,8 +55,8 @@ const Home = () => {
       </div>
       <div className={styles.cardContainer}>
       {filteredData.map((data, index) => (
-        <div key={index} >
-          <Card {...data} />
+        <div key={index} className={isFirstLoad ? styles.animateSlideIn : '' }>
+          <Card {...data}/>
         </div>
       ))}
       </div>
