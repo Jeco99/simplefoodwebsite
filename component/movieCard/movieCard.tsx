@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Movies } from "../dataInterface";
-import { validateHttps, phoneNumber_format, formatTitle } from "../../utils/validated";
+import { validateHttps } from "../../utils/validated";
 
 export const MovieCard: React.FC<Movies> = ({
   id,
@@ -52,12 +52,12 @@ export const MovieCard: React.FC<Movies> = ({
       </div>
 
       <div className="mt-4">
-        <div className="text-lg font-semibold text-center">{formatTitle(title)}</div>
+        <div className="text-lg font-semibold text-center">{title}</div>
         <p className="text-sm mt-4">{overview}</p>
         <p className="text-sm mt-4">Popularity: {popularity}</p>
         <p className="text-sm mt-4">
           {typeof phoneNumber == "string"
-            ? `${phoneNumber_format(phoneNumber)}`
+            ? `${phoneNumber}`
             : "No Phone Number"}
         </p>
       </div>

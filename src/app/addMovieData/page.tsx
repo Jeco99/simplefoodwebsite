@@ -9,12 +9,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { onShowError, onShowSuccess } from "../../../utils/toastHelper";
-import {
-  phoneNumber_format,
-  formatTitle,
-  formatDescription,
-  formatPopularity,
-} from "../../../utils/validated";
 
 const schema = yup.object().shape({
   title: yup.string().required("Title is required"),
@@ -66,14 +60,7 @@ export default function AddForm() {
       console.log("data", data);
       localStorage.setItem(
         "newData",
-        JSON.stringify({
-          title: formatTitle(data.title),
-          overview: formatDescription(data.overview),
-          popularity: formatPopularity(data.popularity),
-          adult: false,
-          phoneNumber: phoneNumber_format(data.phoneNumber),
-          poster_path:data.poster_path,
-        })
+        JSON.stringify(data)
       );
       onShowSuccess("Data stored successfully");
     } catch (error) {
