@@ -60,19 +60,21 @@ export default function AddForm() {
        <h1 className="text-center">Add New Food Data</h1>
        
         <label htmlFor="name">Name</label>
-        <input className={style.formInput} type="text" {...register("name")} />
+        <input className={style.formInput} type="text" {...register("name")} id="name"/>
 
         <label htmlFor="description">Description</label>
         <textarea
           className={style.formInput}
           {...register("description")}
+          id="description"
         />
 
-        <label htmlFor="url">URL</label>
+        <label htmlFor="image_url">URL</label>
         <input
           className={style.formInput}
           type="text"
           {...register("image_url")}
+          id="image_url"
         />
 
         <label htmlFor="rating">Rating</label>
@@ -80,6 +82,7 @@ export default function AddForm() {
           className={style.formInput}
           type="number"
           {...register("rating")}
+          id="rating"
         />
 
     <div className={style.btnContainer}>
