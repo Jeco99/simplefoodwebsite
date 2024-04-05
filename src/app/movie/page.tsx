@@ -33,8 +33,7 @@ export default function Movie() {
     }
   }, []);
 
-  console.log(movies);
-  return (
+   return (
     <>
       <h1 className="text-center text-6xl">Movie List</h1>
       <div className={styles.buttonContainer}>
