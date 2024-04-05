@@ -14,8 +14,7 @@ const Home = () => {
   const [sortList, setSortList] = useState("ascending");
   const [isDarkMode, setDarkMode] = useState(false);
   const [isFirstLoad, setIsFirstLoad] = useState(true);
-  const [isModal, setModal] = useState(false);
-
+ 
   useEffect(() => {
     setIsFirstLoad(false);
 
@@ -49,11 +48,6 @@ const Home = () => {
     setDarkMode(!isDarkMode);
   };
 
-  const handleModal = () => {
-    setModal(!isModal);
-  }
-
-
   return (
 
     <div className={isDarkMode ? styles.darkMode : styles.lightMode}>
@@ -66,8 +60,8 @@ const Home = () => {
         isDarkMode={isDarkMode}
         handleDarkMode={handleDarkMode}
       />
-      <button className={styles.add_DataBtn}><Link href="/addData">Add Data</Link></button>
-  
+      <button className={styles.add_DataBtn}><Link href="/addFoodData">Add Data</Link></button>
+      <button className={styles.add_DataBtn}><Link href="/movie">Show Movie</Link></button>
       </div>
       <div className={styles.cardContainer}>
       {filteredData.map((data, index) => (

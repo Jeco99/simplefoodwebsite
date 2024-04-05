@@ -1,0 +1,50 @@
+.darkMode{
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.lightMode{
+    background-color: white;
+    color: black;
+    border: white;
+}
+
+.buttonContainer,
+.cardContainer{
+    padding: 24px;
+    gap: 16px;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sortButton,
+.add_DataBtn{
+    border: solid 2px black;
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.cardContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.animateSlideIn {
+    animation: slideInFromLeft 0.5s ease-out;
+  }
+
+@keyframes slideInFromLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }

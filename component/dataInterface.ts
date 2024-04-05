@@ -17,3 +17,13 @@ export interface ToggleProps {
   handleDarkMode: () => void; 
   isDarkMode: boolean; 
 }
+
+export interface Movies {
+  id: number;
+  title: string;
+  poster_path: string;
+  popularity: number;
+  overview: string;
+  phoneNumber: string;
+}
+
